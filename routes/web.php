@@ -24,5 +24,4 @@ Route::get('/new-bill', [YourController::class, 'newBill'])->name('new-bill');
 use App\Http\Controllers\InvoiceController;
 
 Route::get('/newbills',[InvoiceController::class,'create'])->name('newbill');
-Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
-Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoicesstore');

@@ -7,33 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
-    // Show the form to create a new invoice
     public function create()
     {
-        return view('create'); // Create a view for invoice creation
+        return view('create');
     }
 
-    // Store a new invoice in the database
     public function store(Request $request)
     {
-        $request->validate([
-            'ms' => 'required|string|max:255',
-            'invoice_no' => 'required|string|max:100',
-            'gstin' => 'required|string|max:50',
-            'invoice_date' => 'required|date',
-            'state' => 'required|string|max:100',
-            'state_code' => 'required|string|max:10',
-            'subtotal' => 'required|numeric',
-            'grand_total' => 'required|numeric',
-            'grand_total_in_words' => 'required|string|max:255',
-            'items' => 'required|array',
-            'items.*.s_no' => 'required|integer',
-            'items.*.description' => 'required|string|max:255',
-            'items.*.hsn_code' => 'nullable|string|max:20',
-            'items.*.quantity' => 'required|integer',
-            'items.*.rate' => 'required|numeric',
-            'items.*.total_price' => 'required|numeric',
-        ]);
+
 
         // Insert the invoice into the database
         DB::table('invoices')->insert([
@@ -44,9 +25,12 @@ class InvoiceController extends Controller
             'state' => $request->state,
             'state_code' => $request->state_code,
             'subtotal' => $request->subtotal,
+            'freight' => $request->freight,
+            'cgst' => $request->cgst,
+            'sgst' => $request->sgst,
+            'igst' => $request->igst,
             'grand_total' => $request->grand_total,
-            'grand_total_in_words' => $request->grand_total_in_words,
-            // Add other fields as necessary
+            'grand_total_in_words' => $request->grand_total_words,
         ]);
 
         // Retrieve the last inserted invoice ID
@@ -65,7 +49,11 @@ class InvoiceController extends Controller
             ]);
         }
 
-        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully.');
+        // Flash success message
+        session()->flash('success', 'Invoice created successfully.');
+
+        // Redirect to the 'welcome' route
+        return redirect()->route('welcome');
     }
 
     // Show all invoices
@@ -73,8 +61,16 @@ class InvoiceController extends Controller
     {
         $invoices = DB::table('invoices')
             ->leftJoin('invoice_items', 'invoices.id', '=', 'invoice_items.invoice_id')
-            ->select('invoices.ms', 'invoices.invoice_no', 'invoices.gstin', 
-                     DB::raw('GROUP_CONCAT(invoice_items.description) as items'))
+            ->select(
+                'invoices.id',
+                'invoices.ms',
+                'invoices.invoice_no',
+                'invoices.gstin',
+                'invoices.invoice_date',
+                'invoices.subtotal',
+                'invoices.grand_total',
+                DB::raw('GROUP_CONCAT(invoice_items.description) as items')
+            )
             ->groupBy('invoices.id')
             ->get();
 

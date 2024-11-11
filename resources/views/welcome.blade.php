@@ -29,6 +29,11 @@
                 </a>
             </div>
         </div>
+        @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded-md mb-4">
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
     </div>
 
     {{-- Include the footer --}}
