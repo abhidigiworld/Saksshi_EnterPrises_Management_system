@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @vite('resources/css/app.css')
 </head>
-<body class="flex flex-col min-h-screen bg-gradient-to-r from-red-500 to-black p-4">
+<body class="flex flex-col min-h-screen bg-gradient-to-r from-indigo-500 to-violet-300 p-4">
 
     <!-- Glassy Header -->
     <div class="flex items-center justify-center h-auto bg-transparent mt-4">
-        <header class="w-full sm:w-3/5 py-4 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg text-white text-center font-extrabold text-5xl shadow-lg rounded-xl animate-fade-in">
-            <h1 class="tracking-wider text-red-500 drop-shadow-lg">
+        <header class="w-full sm:w-3/5 py-4 bg-black bg-opacity-25 backdrop-filter backdrop-blur-lg text-white text-center font-extrabold text-5xl shadow-lg rounded-xl animate-fade-in">
+            <h1 class="tracking-wider text-blue-500 drop-shadow-lg">
                 Sakshi Enterprises
             </h1>
         </header>
@@ -53,7 +53,7 @@
                             <label class="block text-gray-300 text-xs sm:text-sm font-semibold mb-2">Password:</label>
                             <input name="password" type="password" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 bg-black bg-opacity-60" required>
                         </div>
-                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg w-full transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:shadow-outline shadow-lg">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:shadow-outline shadow-lg">
                             Log In
                         </button>
                     </form>

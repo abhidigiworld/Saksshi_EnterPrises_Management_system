@@ -25,3 +25,7 @@ use App\Http\Controllers\InvoiceController;
 
 Route::get('/newbills',[InvoiceController::class,'create'])->name('newbill');
 Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoicesstore');
+
+Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoices.show');
+Route::get('/invoices/{id}/edit', [InvoiceController::class, 'edit'])->name('invoices.edit');
+Route::delete('/invoices/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');

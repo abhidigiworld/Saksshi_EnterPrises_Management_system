@@ -76,4 +76,20 @@ class InvoiceController extends Controller
 
         return view('invoices.index', compact('invoices'));
     }
+
+    public function destroy($id)
+    {
+        DB::table('invoices')->where('id', $id)->delete();
+        DB::table('invoice_items')->where('invoice_id', $id)->delete();
+
+        session()->flash('success', 'Invoice deleted successfully.');
+        return redirect()->route('existing-bills');
+    }
+
+    public function show($id){
+        $invoice = DB::table('invoices')->where('id', $id)->first();
+        $items = DB::table('invoice_items')->where('invoice_id', $id)->get();
+        return view('invoice-show', compact('invoice', 'items'));
+    }
+
 }

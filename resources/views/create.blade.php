@@ -8,60 +8,78 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="max-w-3xl w-full bg-white p-8 rounded-lg shadow-lg mb-8">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800">Create Invoice</h1>
-        <form action="{{ route('invoicesstore') }}" method="POST" class="space-y-6">
-            @csrf
+<body>
+    @include('header')
 
-            <!-- General Invoice Fields -->
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <input type="text" name="ms" placeholder="M/s" class="input-field" required>
-                <input type="text" name="invoice_no" placeholder="Invoice No" class="input-field" required>
-                <input type="text" name="gstin" placeholder="GSTIN" class="input-field" required>
-                <input type="date" name="invoice_date" class="input-field" required>
-                <input type="text" name="state" placeholder="State" class="input-field" required>
-                <input type="text" name="state_code" placeholder="State Code" class="input-field" required>
-            </div>
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div class="mx-6 my-8 pd-4 w-full bg-white p-8 rounded-lg shadow-lg mb-8">
+            <h1 class="text-2xl font-bold mb-6 text-gray-800">Create Invoice</h1>
+            <form action="{{ route('invoicesstore') }}" method="POST" class="space-y-6">
+                @csrf
 
-            <h3 class="text-xl font-semibold text-gray-700 mt-8">Invoice Items</h3>
-            <div id="items" class="space-y-4"></div>
+                <!-- General Invoice Fields -->
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <input type="text" name="ms" placeholder="M/s" class="input-field" required>
+                    <input type="text" name="invoice_no" placeholder="Invoice No" class="input-field" required>
+                    <input type="text" name="gstin" placeholder="GSTIN" class="input-field" required>
+                    <input type="date" name="invoice_date" class="input-field" required>
+                    <input type="text" name="state" placeholder="State" class="input-field" required>
+                    <input type="text" name="state_code" placeholder="State Code" class="input-field" required>
+                </div>
 
-            <button type="button" onclick="addItem()"
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">Add Item</button>
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
-                <input type="number" name="freight" id="freight" placeholder="Freight" class="input-field" step="0.01"
-                    onchange="calculateTotals()">
+                <h3 class="text-xl font-semibold text-gray-700 mt-8">Invoice Items</h3>
+                <div id="items" class="space-y-4"></div>
 
-                <!-- GST Percentages -->
-                <input type="number" name="cgst_percentage" id="cgst_percentage" placeholder="CGST (%)"
-                    class="input-field" step="0.01" onchange="calculateTotals()">
-                <input type="number" name="sgst_percentage" id="sgst_percentage" placeholder="SGST (%)"
-                    class="input-field" step="0.01" onchange="calculateTotals()">
-                <input type="number" name="igst_percentage" id="igst_percentage" placeholder="IGST (%)"
-                    class="input-field" step="0.01" onchange="calculateTotals()">
+                <button type="button" onclick="addItem()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">Add
+                    Item</button>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mt-8">
+                    <input type="number" name="freight" id="freight" placeholder="Freight" class="input-field"
+                        step="0.01" onchange="calculateTotals()">
 
-                <!-- Calculated GST Amounts -->
-                <input type="number" name="cgst" id="cgst" placeholder="CGST Amount" class="input-field" readonly>
-                <input type="number" name="sgst" id="sgst" placeholder="SGST Amount" class="input-field" readonly>
-                <input type="number" name="igst" id="igst" placeholder="IGST Amount" class="input-field" readonly>
+                    <!-- GST Percentages -->
+                    <input type="number" name="cgst_percentage" id="cgst_percentage" placeholder="CGST (%)"
+                        class="input-field" step="0.01" onchange="calculateTotals()">
+                    <input type="number" name="sgst_percentage" id="sgst_percentage" placeholder="SGST (%)"
+                        class="input-field" step="0.01" onchange="calculateTotals()">
+                    <input type="number" name="igst_percentage" id="igst_percentage" placeholder="IGST (%)"
+                        class="input-field" step="0.01" onchange="calculateTotals()">
 
-                <!-- Subtotal and Grand Total -->
-                <input type="number" name="subtotal" id="subtotal" placeholder="Subtotal" class="input-field" readonly>
-                <input type="number" name="grand_total" id="grand_total" placeholder="Grand Total" class="input-field"
-                    readonly>
+                    <!-- Calculated GST Amounts -->
+                    <input type="number" name="cgst" id="cgst" placeholder="CGST Amount" class="input-field" readonly>
+                    <input type="number" name="sgst" id="sgst" placeholder="SGST Amount" class="input-field" readonly>
+                    <input type="number" name="igst" id="igst" placeholder="IGST Amount" class="input-field" readonly>
 
-                <!-- Grand Total in Words -->
-                <input type="text" name="grand_total_words" id="grand_total_words" placeholder="Grand Total in Words"
-                    class="input-field" readonly>
-            </div>
+                    <!-- Subtotal and Grand Total -->
+                    <input type="number" name="subtotal" id="subtotal" placeholder="Subtotal" class="input-field"
+                        readonly>
+                    <input type="number" name="grand_total" id="grand_total" placeholder="Grand Total"
+                        class="input-field" readonly>
+
+                    <!-- Grand Total in Words -->
+                    <input type="text" name="grand_total_words" id="grand_total_words"
+                        placeholder="Grand Total in Words" class="input-field" readonly>
+                </div>
 
 
-            <button type="submit"
-                class="w-full bg-green-500 text-white px-4 py-2 rounded mt-6 hover:bg-green-600 focus:outline-none">Create
-                Invoice</button>
-        </form>
+                <button type="submit"
+                    class="w-full bg-green-500 text-white px-4 py-2 rounded mt-6 hover:bg-green-600 focus:outline-none">Create
+                    Invoice</button>
+            </form>
+        </div>
     </div>
+
+    <div class="mb-12 p-4 flex justify-center gap-6">
+        <a href="{{ route('welcome') }}"
+            class="w-1/2 sm:w-1/3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none text-center">
+            Back to Main Page
+        </a>
+        <a href="{{ route('existing-bills') }}"
+            class="w-1/2 sm:w-1/3 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none text-center">
+            View Existing Bills
+        </a>
+    </div>
+
 
     @include('footer')
 

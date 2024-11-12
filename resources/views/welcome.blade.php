@@ -9,28 +9,34 @@
     @vite('resources/css/app.css') {{-- If you're using Vite for asset bundling --}}
 </head>
 
-<body>
+<body class="bg-gradient-to-r from-indigo-200 to-violet-200 text-white font-sans min-h-screen flex flex-col">
     {{-- Include the header --}}
     @include('header')
 
-    <div class="bg-black h-screen flex flex-col justify-center items-center">
-        <div class="flex flex-row justify-center items-center">
-            <div class="hidden md:block">
-                <img src="{{ asset('images/chair.png') }}" alt="Bouncing Image" class="animate-bounce w-full h-auto" />
+    <div class="flex-grow flex flex-col items-center justify-center">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold md:text-5xl mb-4 animate-fade-in-down">Welcome to Sakshi Enterprises</h1>
+            <p class="text-lg md:text-xl text-gray-200">Manage and create bills with ease</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+            <div class="hidden md:block md:mr-6">
+                <img src="{{ asset('images/chair.png') }}" alt="Bouncing Image" class="animate-bounce w-48 md:w-64">
             </div>
-            <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-col md:flex-row gap-4 items-center">
                 <a href="{{ route('existing-bills') }}"
-                    class="bg-red-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-red-700 transition duration-300">
+                    class="bg-blue-600 hover:bg-blue-800 text-white px-8 py-4 rounded-md shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
                     View Existing Bills
                 </a>
                 <a href="{{ route('new-bill') }}"
-                    class="bg-red-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-red-600 transition duration-300">
+                    class="bg-green-600 hover:bg-green-800 text-white px-8 py-4 rounded-md shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
                     Create New Bill
                 </a>
             </div>
         </div>
+
         @if (session('success'))
-            <div class="bg-green-500 text-white p-4 rounded-md mb-4">
+            <div class="mt-8 bg-green-500 text-white p-4 rounded-md shadow-md">
                 <p>{{ session('success') }}</p>
             </div>
         @endif
