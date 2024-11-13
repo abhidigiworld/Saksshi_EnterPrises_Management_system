@@ -33,7 +33,6 @@ class InvoiceController extends Controller
             'grand_total_in_words' => $request->grand_total_words,
         ]);
 
-        // Retrieve the last inserted invoice ID
         $invoiceId = DB::getPdo()->lastInsertId();
 
         // Insert the invoice items into the database

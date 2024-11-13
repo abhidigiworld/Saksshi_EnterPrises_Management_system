@@ -20,7 +20,6 @@ use App\Http\Controllers\YourController;
 Route::get('/existing-bills', [YourController::class, 'existingBills'])->name('existing-bills');
 Route::get('/new-bill', [YourController::class, 'newBill'])->name('new-bill');
 
-//route for creation of the new bills
 use App\Http\Controllers\InvoiceController;
 
 Route::get('/newbills',[InvoiceController::class,'create'])->name('newbill');

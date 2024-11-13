@@ -10,8 +10,6 @@
     @include('header')
     <div class="container mx-auto py-8">
         <h1 class="text-2xl font-bold text-center mb-6">All Bills</h1>
-        
-        <!-- Success Message -->
         @if(session('success'))
             <div class="bg-green-200 text-green-800 border border-green-600 py-2 px-4 mb-4 text-center rounded">
                 {{ session('success') }}

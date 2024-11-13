@@ -7,7 +7,6 @@
     <title>Invoice Details</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Hide header and footer during printing */
         @media print {
             .no-print {
                 display: none;

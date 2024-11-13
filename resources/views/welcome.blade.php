@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    @vite('resources/css/app.css') {{-- If you're using Vite for asset bundling --}}
+    @vite('resources/css/app.css') 
 </head>
 
 <body class=" text-white font-sans min-h-screen flex flex-col">
-    {{-- Include the header --}}
+   
     @include('header')
 
     <div class="flex-grow flex flex-col items-center justify-center">
@@ -42,7 +42,7 @@
         @endif
     </div>
 
-    {{-- Include the footer --}}
+    
     @include('footer')
 </body>
 
