@@ -9,7 +9,7 @@
     @vite('resources/css/app.css') {{-- If you're using Vite for asset bundling --}}
 </head>
 
-<body class="bg-gradient-to-r from-indigo-200 to-violet-200 text-white font-sans min-h-screen flex flex-col">
+<body class=" text-white font-sans min-h-screen flex flex-col">
     {{-- Include the header --}}
     @include('header')
 
@@ -21,7 +21,7 @@
 
         <div class="flex flex-col md:flex-row gap-8 items-center">
             <div class="hidden md:block md:mr-6">
-                <img src="{{ asset('images/chair.png') }}" alt="Bouncing Image" class="animate-bounce w-48 md:w-64">
+                <img src="https://i.pinimg.com/originals/46/71/c6/4671c6bfaa611757647e91a3aca2ba4f.gif" alt="Bouncing Image" class="animate-bounce w-48 md:w-64">
             </div>
             <div class="flex flex-col md:flex-row gap-4 items-center">
                 <a href="{{ route('existing-bills') }}"

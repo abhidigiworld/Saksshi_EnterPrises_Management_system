@@ -47,11 +47,11 @@
                         @csrf
                         <div>
                             <label class="block text-gray-300 text-xs sm:text-sm font-semibold mb-2">Username:</label>
-                            <input name="username" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 bg-black bg-opacity-60" required>
+                            <input name="username" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 bg-black bg-opacity-60" required>
                         </div>
                         <div>
                             <label class="block text-gray-300 text-xs sm:text-sm font-semibold mb-2">Password:</label>
-                            <input name="password" type="password" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 bg-black bg-opacity-60" required>
+                            <input name="password" type="password" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 bg-black bg-opacity-60" required>
                         </div>
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:shadow-outline shadow-lg">
                             Log In
